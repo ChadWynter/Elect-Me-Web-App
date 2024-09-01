@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+<!--Showcase-->
+<div class="bg-secondary">
+<section class="bg-dark text-light p-5 text-center">
+  <div class="container">
+      <div class="d-sm-flex justify-content-between align-items-center"> <!--d-flex aligns side-by-side-->
+          <div>
+              <h1>Vote In Upcoming Elections!</h1>
+              <p class="lead">Sign-up for an Elect-Me account and vote as soon as you are verified. </p> <!--lead class formats text-->
+              <p class="lead">If you already have an account, you just need to login. </p>
+              <a href="/sign-up" class="btn btn-primary fs-10 my-2">Sign-Up</a>
+              <a href="/login" class="btn btn-primary fs-10 my-2">Login</a> <!--link formatted as a button (does not need to be btn)-->
+          </div>
+          <img class="img-fluid w-50" src="{{url_for('static', filename='your_vote_counts.png')}}" alt=""/> <!--img-fluid bounds image to container-->
+      </div>
+  </div>
+
+</section>
+
+<!--Demographics search-->
+<section id="demographics-search" class="container-fluid pt-2 ps-2 pe-2 align-items-center">
+            <div class="card bg-dark text-light pt-3 pb-3 align-items-center">
+                <div>
+                  <p> Looking to get started? Find what elections you can vote for. </p>
+                </div>
+                <div class="row justify-content-center g-2">
+                    <div class="col-md-auto">
+                        <input size="35" class="form-control" type = "text" name = "demo" placeholder="Enter Your Zipcode" />
+                    </div>
+                    <div class="col-md-auto">
+                        <button type="button" class="btn btn-primary btn-sm">Search</button>
+                    </div>
+                </div>
+            </div>
+</section>
+
+<!--News display-->
+<section id="news-display">
+    <div class="container-fluid ps-2 pe-2">
+        <div class="row pt-2 g-2"> <!--giving columns gaps around eachother for small screen stack-->
+            <div class="col-md"> <!--col-md so it stacks on smaller screens-->
+                <div class="card bg-dark text-light">
+                    <div class="card-body fs-4">
+                        <p class="card-text text-center" >US Election News</p>
+                        <hr> <!--divider-->
+                        <div class="card-body fs-6">
+                            <p class="card-text" style="text-decoration: underline;">November 7th, 2020</p>
+                            <p>Joe Biden beats out Trump with 306 electoral votes to 232.</p>
+                            <p>Biden 51.3% (81,283,361 votes). Trump 46.8% (74,222,960 votes).</p>
+                        </div>
+                        <div class="card-body fs-6">
+                          <p class="card-text" style="text-decoration: underline;">November 8th, 2016</p>
+                          <p>Donald Trump beats out Hillary Clinton with 306 electoral votes to 232.</p>
+                          <p>Trump 45.9% (62,985,106 votes). Clinton 48.0% (65,853,625 votes).</p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card bg-dark text-light">
+                    <div class="card-body fs-4">
+                        <p class="card-text text-center">State Election News</p>
+                        <hr>
+                        <div class="card-body fs-6">
+                          <p class="card-text" style="text-decoration: underline;">March 5th, 2022 - Iowa Governor</p>
+                          <p>Reynolds beats DeJear 51 to 43.</p>
+                          <p>Spread +8</p>
+                        </div>
+                        <div class="card-body fs-6">
+                          <p class="card-text" style="text-decoration: underline;">March 3rd, 2022 - Georgia Governor</p>
+                          <p>Kemp wins out over Perdue, Taylor, and Davis at 44.</p>
+                          <p>Spread +9</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--FAQ-->
+<section id="questions" class="p-2">
+    <div class="container-fluid text-center bg-dark text-light ms-0">
+        <h2 class="mb-0 pt-2">
+            Frequently Asked Questions
+        </h2>
+    </div>
+    <div class="accordion accordion-flush" id="FAQ"> <!--accordion code-->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              Is a driver license enough to be verified to vote? 
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse bg-dark text-light" aria-labelledby="flush-headingOne" data-bs-parent="#FAQ">
+            <div class="accordion-body">Two forms of identication are required for verification. A driver license will be accepted for one of the two ids but another form, such as a passport, is necessary.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              What should I do if I have two addresses?
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse bg-dark text-light" aria-labelledby="flush-headingTwo" data-bs-parent="#FAQ">
+            <div class="accordion-body">You should sign-up with your primary address only. If your primary address changes after sign-up, you are able to change it.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingThree">
+            <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+              Will my information be safe?
+            </button>
+          </h2>
+          <div id="flush-collapseThree" class="accordion-collapse collapse bg-dark text-light" aria-labelledby="flush-headingThree" data-bs-parent="#FAQ">
+            <div class="accordion-body">Yes, all information is kept secure and anonymous to the public. Your information is not provided to any external sources other than identification verification.</div>
+          </div>
+        </div>
+      </div>
+</section>
+
+
+<section id="contact" class="p-2 pt-0">
+  <div class="container-fluid bg-dark text-light">
+    <div class="d-sm-flex align-items-center">
+      <div class="col">
+        <div>
+          <p class="lead" style="text-decoration: underline;">Contact Us </p>
+          <p> Email: electmesupport@gmail.com. </p>
+          <p> Phone Number: 123-456-7890</p>
+        </div>
+      </div>
+      <div class="col">
+        <div>
+          <p class="lead" style="text-decoration: underline;"> Office Hours</p>
+          <p> Monday-Friday: 8am-5pm</p>
+          <p> Sat-Sun: Closed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+{% endblock %}

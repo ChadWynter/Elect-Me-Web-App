@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}ViewElections{% endblock %}
+{% block content %}
+<section class="bg-dark text-light text-center pb-4">     
+    <h1>View Election Results</h1>
+
+</section>
+
+<section class="text-center pb-4 my-3 id=userInfo">
+    <div id="view">
+        {% if results | length > 0  %}
+            {% for tuple in results %}
+            <p id="election" name="election"><h3>Election: {{tuple[0]}}</h3></p>
+                {% for race in tuple[1] %}
+                    <p id="race" name="race"><h4>Race: {{race[0]["race_title"]}}</h4></p>
+                    {% for num in range(race[1]) %}
+                        <p id="cand" name="cand">Candidate {{num+1}}: {{race[0][('election_candidate'+((num+1)) | string)]}} - Votes: {{race[0][('cand_votes'+((num+1)) | string)]}}</p>
+                    {% endfor %}
+                    <p class="mb-4" id="race" name="race"><strong>Race Winner: {{race[2][0]}} - Votes: {{race[2][1]}}</strong></p>
+                {% endfor %}
+            {% endfor %}
+        {% else %}
+            <p id="election" name="election"><strong>There are no finished Elections to display</strong></p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

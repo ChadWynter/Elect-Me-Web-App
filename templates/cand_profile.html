@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Vote{% endblock %}
+{% block content %}
+<section class="bg-dark text-light text-center pb-4">     
+    <h1>Candidate Profile</h1>
+    <h1>{{results[0]}}</h1>
+
+</section>
+
+<section class="text-center pb-4 my-3 id=userInfo"> 
+    <h3><strong>Competing In</strong></h3>
+    <hr>
+    <div id="race">
+        {% for race in results[1] %}
+            <p id="election" name="election"><strong>Election: {{race[0]["election_title"]}}</strong></p>
+            <p id="election" name="election"><strong>Race: {{race[0]["race_title"]}}</strong></p>
+            <p id="candidate" name = "candidate"><strong>Candidates: </strong>
+            {% for num in range(race[1]) %}
+                {% if num == race[1]-1 %}
+                    {{race[0][("election_candidate"+((num+1)) | string)]}}
+                {% else %}
+                    {{race[0][("election_candidate"+((num+1)) | string)]}},
+                {% endif %}
+            {% endfor %}
+            </p>
+        {% endfor %}
+    <div>
+</section>
+
+
+{% endblock %}

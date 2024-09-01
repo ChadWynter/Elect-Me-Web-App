@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Vote{% endblock %}
+{% block content %}
+<section class="bg-dark text-light text-center pb-4">     
+    <h1>Vote In Elections</h1>
+
+</section>
+
+<section class="text-center pb-4 my-3 id=userInfo"> 
+    <h3><strong>Races</strong></h3>
+    <hr>
+    <form id="voteform" action="#" method="post">
+    <div id="race">
+        {% for race in results %}
+            <p id="race" name="race"><strong>{{race[0]["race_title"]}}</strong></p>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group"></div>
+            {% for num in range(race[1]) %}
+                <p>
+                    <button type="submit" onclick="{document.getElementById('choose').value = '{{race[0][('election_candidate'+((num+1) | string))]}}'}" id="{{race[0]['race_title'] + '\\' + ('election_candidate'+((num+1) | string))}}">Candidate {{num+1}}: </button> 
+                    <input type="radio" class="btn-check" name="{{race[0]['race_title']}}" value="{{race[0][('election_candidate'+((num+1)) | string)]}}" id="{{race[0]['race_title'] + race[0][('election_candidate'+((num+1) | string))]}}" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="{{race[0]['race_title'] + race[0][('election_candidate'+((num+1) | string))]}}">{{race[0][("election_candidate"+((num+1)) | string)]}}</label> 
+                </p>
+            {% endfor %}
+        {% endfor %}
+    <div>
+        <button type="submit" id="subbtn" onclick="{document.getElementById('choose').value = 'vote';}" value="vote" class="btn btn-primary mb-2">Submit Votes!</button>
+    </div>
+    <input type="hidden" id="choose" name="choose" value="notChanged">
+    </div>
+    </form>
+</section>
+
+{% endblock %}

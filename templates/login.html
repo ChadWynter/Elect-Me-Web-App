@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Login Page{% endblock %}
+{% block content %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, msg in messages %}
+            <div class="my-0 alert alert-{{ category }} text-center alert-dismissible" roll="alert">
+                {{msg}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+<section class="bg-dark text-light text-center pb-4">     
+    <h1>Login to Elect-me</h1>
+
+</section>
+<!--class="form-control allows for dynamic resizing of elements. put inside column to limit how large it gets"-->
+<section>
+    <div class="container-fluid pt-2">
+        <div class="card bg-trasparent text-dark border-0">
+            <div class="card-body text-center fs-6">
+                <p class="card-text">Enter credentials to view polls</p>
+                <hr> <!--divider-->
+                <div class="card-body text-center fs-6">
+                    <form action="#" method="post">
+                        <div class="row justify-content-center">
+                            <div class="col-5">
+                                <div class="form-outline p-2">
+                                    <input type="text" class="form-control" name="nm" required="true" placeholder="Enter Voter ID">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-5">
+                                <div class="form-outline p-2">
+                                    <input type="password" class="form-control" name="pword" required="true" placeholder="Enter Password Here">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <button type="submit" id="btn1" class="btn btn-primary">Submit</button>
+                        </div>
+                        <!--imbedded js to show loading spinner on button click-->
+                        <div id="testing"></div>
+                        <script type="text/javascript">
+                            var item = document.getElementById("btn1");
+                            item.onclick=function(){
+                                document.getElementById("testing").innerHTML = "<div class=\"spinner-border\"></div>"
+                            }
+                        </script>
+                        
+                    </form>
+                    <div class="row justify-content-center">
+                        
+                        <div class="col-4">
+                            <div class="text-center fs-10">
+                                <a href="/forgotpassword" class="btn btn-light">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-center fs-10">
+                                <a href="/forgotvoterid" class="btn btn-light">Forgot Voter ID?</a>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

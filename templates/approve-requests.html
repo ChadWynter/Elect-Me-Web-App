@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Approve Requests{% endblock %}
+{% block content %}
+<div class="container-fluid text-center justify-content-center">
+    <h2 class="mb-2">Approve or deny pending requests</h2>
+    <p class="mb-2">Select an ID below</p>
+    {% for i in range(0,len) %}
+    <a class="fs-4" href="{{content[i]['id']}}">{{content[i]['id']}}<br><br></a>
+    {% endfor %}
+
+</div>
+{% endblock %}

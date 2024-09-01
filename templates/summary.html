@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Summary{% endblock %}
+{% block content %}
+<section class="bg-dark text-light text-center pb-4">     
+    <h1>Summary of your Votes:</h1>
+
+</section>
+<section class="text-center pb-4 my-3 id=userInfo"> 
+    <div id="race">
+        {% for vote in results %}
+            <p id="race" name="race"><strong>{{vote[0]}}</strong></p>
+            <p id="vote" name="vote"><strong>You voted for: {{vote[1]}} </strong></p>
+        {% endfor %}
+    </div>
+    <button onclick="print()">Print</button>
+    <script>
+        function print() {
+            var div = document.getElementById("race").innerHTML;
+            var wind = window.open('', '', 'height=500, width=500');
+            wind.document.write(div);
+            wind.document.close();
+            wind.print();
+        }
+    </script>
+</section>
+
+{% endblock %}

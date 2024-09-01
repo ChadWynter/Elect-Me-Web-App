@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% block title %}Admin{% endblock %}
+{% block content %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, msg in messages %}
+            <div class="alert alert-{{ category }} text-center alert-dismissible" roll="alert">
+                {{msg}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+<div class="container justify-content-center text-center mt-2">
+    <div class="row justify-content-end">
+        <div class="col-3 align-self-end">
+            <a href="/address-change.html" class="btn btn-light">Edit Profile</a>
+        </div>
+    </div>
+    <h3 class="mb-2">Welcome, {{user}}</h3>
+    <div class="card bg-light text-dark mb-2">
+        <div class="card-body">
+            <p class="lead">To approve pending requests, <a href="/approve-requests">Click here</a></p>
+            <p class="lead">To perform a user search, <a href="/searchuser">Click here</a></p>
+            <p class="lead">To setup an election, <a href="/newsetupelection">Click here</a></p>
+            <p class="lead">To setup an race, <a href="/setuprace">Click here</a></p>
+            <p class="lead">To setup a ballot, <a href="/newballot">Click here</a></p>
+            <p class="lead">To add a manager to an already existing precinct, <a href="/addToPrecinct">Click here</a></p>
+            <p class="lead">To declare an election, <a href="/declare">Click here</a></p>
+        </div>
+    </div>
+    <div class="card bg-light text-dark mb-2 mt-2 pt-2">
+        <h4>Create a Precinct here</h4>
+        
+<section class="text-center pb-4 my-3 id=userInfo">
+    <form action="#" method="post" enctype="multipart/form-data">
+    <div id="precinct" class="container-fluid">
+        <div class="mb-5">
+            <hr>
+        </div>
+        <div class="mb-4">
+            <button id="addZip1">Add Zip Range</button>
+        </div>
+        <div id="zips">
+            <section id="zipSect">
+                <p><strong>ZipcodeFive</strong></p>
+                <div class="row justify-content-center mb-4">
+                    <div class="col-3">
+                        <div class="form-outline">
+                            <input id="zipFive1" type="text" class="form-control" name="zipFive1" minlength="5" maxlength="5" placeholder="XXXXX" required="true">
+                        </div>
+                    </div>
+                </div>
+                <p><strong>Zipcode+4 Range</strong></p>
+                <div class="row justify-content-center mb-4">
+                    <div class="col-3">
+                        <div class="form-outline">
+                            <input id="zipFour1" type="text" class="form-control" name="zipFour1" minlength="9" maxlength="9" placeholder="XXXX-XXXX" required="true">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <p><strong>Location</strong></p>
+        <div class="row justify-content-center mb-4">
+            <div class="col-3">
+                <div class="form-outline">
+                    <input type="text" class="form-control" name="location" required="true">
+                </div>
+            </div>
+        </div>
+
+        <p><strong>Polling Manager</strong></p>
+        <div class="row justify-content-center mb-4">
+            <div class="col-3">
+
+                <select id="manager" name="manager" class="form-select" required="true">
+                    {% for manager in results[0] %}
+                    
+                        <OPTION value={{manager.id}}>{{manager.id}}</OPTION>
+                    {% endfor %}
+                </select>
+
+            </div>
+        </div>
+
+        <p><strong>Election Office Contact</strong></p>
+        <div class="row justify-content-center mb-4">
+            <div class="col-3">
+                <div class="form-outline">
+                    <input type="text" class="form-control" name="officeContact" required="true">
+                </div>
+            </div>
+        </div>
+        
+
+
+        <input type="hidden" name="choose" value="precinct">
+        <div>
+            <button type="submit" value="precinct" name="test" id="subbtn" class="btn btn-primary mb-2">Create Precinct</button>
+        </div>
+
+        <div class="card bg-light text-dark mb-2">
+            <div class="card-body">
+                <p class="lead">To move on to setting up a race, <a href="/setuprace">Click here</a></p>
+        </div>
+
+        <!--imbedded js to show spinner on a button click-->
+        <div id="testing"></div>
+        <script type="text/javascript">
+            var item = document.getElementById("subbtn");
+            item.onclick=function(){
+                document.getElementById("testing").innerHTML = "<div class=\"spinner-border\"></div>"
+            }
+        </script>
+        <!-- This javascript creates the new fields on button press -->
+        <script type="text/javascript">
+            //Have a count so we can add 1 to each of the names to make them different for the form
+            var count = 1;
+            document.getElementById("addZip1").onclick = function() {
+                //Grab all of the required elements for cloning
+                var container = document.getElementById("zips");
+                var section = document.getElementById("zipSect");
+                var clone = section.cloneNode(true);
+
+                //Find the name of the old variables
+                var oldFive = "zipFive" + String(count);
+                var oldFour = "zipFour" + String(count);
+                //Increment count and find the name of new variables
+                count++;
+                var newFive = "zipFive" + String(count);
+                var newFour = "zipFour" + String(count);
+
+                //Edit the names and ids of these elements so they are different
+                oZipFive = document.getElementById(oldFive);
+                oZipFive.id = newFive;
+                oZipFive.name = newFive;
+
+                oZipFour = document.getElementById(oldFour);
+                oZipFour.id = newFour;
+                oZipFour.name = newFour;
+
+                //Finally, add the clone into view. NOTE: since we are editing the elements (oZipFive, oZipFour),
+                //before appending, the original view will have the highest number. If you have 3 children, the original
+                //view has zip_five4, then the prev clone zip_five3, etc. It goes backwards in reference. This does not matter
+                //functionally.
+                container.appendChild(clone);
+          }
+        </script>
+    </div>
+</section>
+{% endblock %}

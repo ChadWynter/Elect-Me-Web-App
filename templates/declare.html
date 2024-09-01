@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Declare{% endblock %}
+{% block content %}
+<section class="bg-dark text-light text-center pb-4">     
+    <h1>Declare Election</h1>
+
+</section>
+<section class="text-center pb-4 my-3 id=userInfo">
+    <form action="#" method="post" enctype="multipart/form-data">
+        <div class="form-outline">
+            <div class="row justify-content-center mb-2"></div>
+                <label class="mb-2"><strong>Select an Election to Declare</strong></label>
+                <div>
+                    <select name="election" class="form-select mb-2" >
+                        {% for election in results %}
+                            <OPTION value={{election.election_title}}>{{election.election_title}}</OPTION>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <button type="submit" id="subbtn" class="btn btn-primary mb-2">Declare Election</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>  
+
+{% endblock %}

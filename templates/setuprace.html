@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}Setup Race{% endblock %}
+{% block content %}
+
+<div class="container justify-content-center text-center mt-2">
+    <h4>Create a Race here</h4>
+
+<section class="text-center pb-4 my-3 id=userInfo">
+    <form action="#" method="post" enctype="multipart/form-data">
+    <div id="precinct">
+
+        <label class="mb-2"><strong>Race title</strong></label>
+        <div class="row justify-content-center mb-2">
+            <div class="col-3 form-outline">
+                <input type="text" class="form-control" min="18" name="electiontitle" placeholder="Race title" required="true">
+            </div>
+        </div>
+
+        <label class="mb-2"><strong>Race Term</strong></label>
+        <div class="row justify-content-center mb-2">
+            <div class="col-3 form-outline">
+                <input type="text" class="form-control" min="18" name="electiondate" placeholder="Race term" required="true">
+
+                <label class="mt-2 mb-2"><strong>Select Election</strong></label>
+                <div>
+                    <select name="election" class="form-select">
+                        {% for election in results %}
+                            <OPTION value={{election.election_title}}>{{election.election_title}}</OPTION>
+                        {% endfor %}
+                    </select>  
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div>
+            <button id="addZip1" class="btn btn-dark btn-sm">Add Candidate</button>
+        </div>
+        <p><strong>Candidates</strong></p>
+
+        <div id="zips">
+            <section id="zipSect">
+                <div class="row justify-content-center mb-4">
+                    <div class="col-3">
+                        <div class="form-outline">
+                            <input id="zipFive1" type="text" class="form-control" name="zipFive1" placeholder="Candidate" required="true">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <input type="hidden" name="choose" value="precinct">
+        <div>
+            <button type="submit" value="precinct" name="test" id="subbtn" class="btn btn-primary mb-2">Create Race</button>
+        </div>
+
+        <div class="card bg-light text-dark mb-2">
+            <div class="card-body">
+                <p class="lead">To move on to creating a ballot, <a href="/newballot">Click here</a></p>
+        </div>
+
+        <!-- This javascript creates the new fields on button press -->
+        <script type="text/javascript">
+            //Have a count so we can add 1 to each of the names to make them different for the form
+            var count = 1;
+            document.getElementById("addZip1").onclick = function() {
+                //Grab all of the required elements for cloning
+                var container = document.getElementById("zips");
+                var section = document.getElementById("zipSect");
+                var button = document.getElementById("addZip1")
+                var clone = section.cloneNode(true);
+
+                //Find the name of the old variables
+                var oldFive = "zipFive" + String(count);
+                //Increment count and find the name of new variables
+                count++;
+                var newFive = "zipFive" + String(count);
+
+                //Edit the names and ids of these elements so they are different
+                oZipFive = document.getElementById(oldFive);
+                oZipFive.id = newFive;
+                oZipFive.name = newFive;
+
+                //Finally, add the clone into view. NOTE: since we are editing the elements (oZipFive, oZipFour),
+                //before appending, the original view will have the highest number. If you have 3 children, the original
+                //view has zip_five4, then the prev clone zip_five3, etc. It goes backwards in reference. This does not matter
+                //functionally.
+                container.appendChild(clone);
+          }
+        </script>
+    </div>
+</form>
+</section>
+
+{% endblock %}

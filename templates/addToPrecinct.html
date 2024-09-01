@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Approve Requests{% endblock %}
+{% block content %}
+<div class="container-fluid text-center justify-content-center">
+    <h2>Add a manager to a polling station beow</h2>
+    <hr class="mb-2">
+    <p class="mb-4"><strong>need to search precincts by ID? click </strong><a href="/searchuser.html">here</a></p>
+    <form method="post">
+        <p>Select precinct here</p>
+        <div class="row justify-content-center mb-4">
+            <div class="col-3">
+
+                <select id="precinct" name="precinct" class="form-select" required="true">
+                    {% for precinct in precincts %}
+                        <OPTION value={{precinct.idprecincts}}>{{precinct.idprecincts}}</OPTION>
+                    {% endfor %}
+                </select>
+
+            </div>
+        </div>
+
+        <p>Select manager here</p>
+        <div class="row justify-content-center mb-4">
+            <div class="col-3">
+
+                <select id="manager" name="manager" class="form-select" required="true">
+                    {% for manager in managers %}
+                        <OPTION value={{manager.id}}>{{manager.id}}</OPTION>
+                    {% endfor %}
+                </select>
+
+            </div>
+        </div>
+        <div class="row text-center justify-content-center">
+            <div class="col-3">
+                <button type="submit" class="btn btn-primary">Add Manager</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

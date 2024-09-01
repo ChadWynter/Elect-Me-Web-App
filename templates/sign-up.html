@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+{% block title %}Sign up{% endblock %}
+{% block content %}
+<section class="bg-dark text-light text-center pb-4">     
+    <h1>Create Account</h1>
+    <p class="fs-8 fw-light">Already have an account? <a href="/login">sign in</a></p>
+
+</section>
+<section class="text-center pb-4 my-3 id=userInfo">
+    <form action="#" method="post" enctype="multipart/form-data">
+    <div class="container-fluid">
+        <div class="mb-5">
+            <p class="lead"><strong>Enter information below</strong><br>Please note that you must be <abbr>18</abbr> or older to register.</p>
+            <hr>
+        </div>
+        
+        <label class="mb-3"><strong>Tell us about yourself</strong></label>
+        <div class="row justify-content-center mb-4">
+            <div class="row justify-content-center mb-2">
+                <div class="col-2 form-outline">
+                    <!--class=form-control for nicely formatted resizeable inputbox-->
+                    <input type="number" class="form-control" min="18" name="age" placeholder="Age" required="true">
+                </div>
+            </div>
+            
+            <div class="row justify-content-center mb-2">
+                <div class="col-5 form-outline">
+                    <input type="text" class="form-control" min="18" name="fname" placeholder="First Name" required="true">
+                </div>
+            </div>
+            
+            <div class="row justify-content-center mb-2">
+                <div class="col-5 form-outline">
+                    <input type="text" class="form-control" min="18" name="lname" placeholder="Last Name" required="true">
+                </div>
+            </div>
+                        
+            
+            <div class="row justify-content-center mb-2">
+                <div class="col-5 form-outline">
+                    <input type="text" class="form-control" min="18" name="email" placeholder="Email" required="true">
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-5 form-outline">
+                    <input type="number" class="form-control" min="18" name="number" placeholder="phone number" required="true">
+                </div>
+            </div>
+                        
+        </div>
+        <p><strong>Where do you live?</strong></p>
+        <div class="row justify-content-center mb-4">
+            <div class="col-3">
+                <div class="form-outline">
+                    <input type="text" class="form-control" name="addy" placeholder="address" required="true">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-outline">
+                    <input type="number" class="form-control"  min="0" name="zip" placeholder="zip" required="true">
+                </div>
+            </div>
+        </div>
+        <label for="formFile" class="form-label"><strong>Enter two different ID numbers and select which type they are</strong></label>
+        <p class="fs-8">valid types: state id, military id, drivers license, passport</p>
+        <div class="row justify-content-center mb-2">
+            <div class="col-5">
+                <input class="form-control" type="text" name="id1" id="formFile1" placeholder = "Enter first ID number" required="true">
+            </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+            <div class="col-5">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="idtype1" value="state" id="btnradio1" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="btnradio1">State ID</label>
+                  
+                    <input type="radio" class="btn-check" name="idtype1" value="military" id="btnradio2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio2">Military ID</label>
+                  
+                    <input type="radio" class="btn-check" name="idtype1" value="license" id="btnradio3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio3">License</label>
+
+                    <input type="radio" class="btn-check" name="idtype1" value="passport" id="btnradio4" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio4">Passport</label>
+                  </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-2">
+            <div class="col-5">
+                <input class="form-control" type="text" name="id2" id="formFile2" placeholder = "Enter second ID number" required="true">
+            </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+            <div class="col-5">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="idtype2" value="state" id="btnradio5" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="btnradio5">State ID</label>
+                  
+                    <input type="radio" class="btn-check" name="idtype2" value="military" id="btnradio6" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio6">Military ID</label>
+                  
+                    <input type="radio" class="btn-check" name="idtype2" value="license" id="btnradio7" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio7">License</label>
+
+                    <input type="radio" class="btn-check" name="idtype2" value="passport" id="btnradio8" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio8">Passport</label>
+                  </div>
+            </div>
+        </div>
+        <div class="mb-4">
+            <p class="lead"><strong>Please answer security questions below</strong></p>
+        </div>
+
+        <div class="row justify-content-center mb-1">
+            <div class="col-5 form-outline">
+                <p>What was the first car you drove?</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-1">
+            <div class="col-5 form-outline">
+                <input type="text" class="form-control" min="18" name="s1" placeholder="question 1" required="true">
+            </div>
+        </div>
+        <div class="row justify-content-center mb-4">
+            <div class="col-8 form-outline">
+                <hr>
+            </div>
+        </div>
+
+        
+        <div class="row justify-content-center mb-1">
+            <div class="col-5 form-outline">
+                <p>What street did you live on in first grade?</p>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-1">
+            <div class="col-5 form-outline">
+                <input type="text" class="form-control" min="18" name="s2" placeholder="question 2" required="true">
+            </div>
+        </div>
+        <div class="row justify-content-center mb-4">
+            <div class="col-8 form-outline">
+                <hr>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-1">
+            <div class="col-5 form-outline">
+                <p>What city were you born in?</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-4">
+            <div class="col-5 form-outline">
+                <input type="text" class="form-control" min="18" name="s3" placeholder="question 3" required="true">
+            </div>
+        </div>
+        <div class="row justify-content-center mb-4">
+            <div class="col-8 form-outline">
+                <hr>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-4">
+            <div>
+                Create password <br>
+                <p>Must be alphanumeric with at least 8 characters</p>
+            </div>
+            <div class="col-5 form-outline">
+                <input type="password" class="form-control" name="pword" minLength="8" placeholder="password" required="true">
+            </div>
+        </div>
+        <p>Please select which type of account you would like to make</p>
+        <div class="row justify-content-center mb-5">
+            <div class="col-5">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="role" value="voter" id="btnradio9" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="btnradio9">Regular Voter</label>
+                  
+                    <input type="radio" class="btn-check" name="role" value="admin" id="btnradio10" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio10">Administrator</label>
+
+                    <input type="radio" class="btn-check" name="role" value="manager" id="btnradio11" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio11">Manager</label>
+
+                    
+
+                  </div>
+            </div>
+        </div>
+            <button type="submit" id="subbtn" class="btn btn-primary mb-2">Sign me up!</button>
+        </div>
+        <!--imbedded js to show spinner on a button click-->
+        <div id="testing"></div>
+        <script type="text/javascript">
+            var item = document.getElementById("subbtn");
+            item.onclick=function(){
+                document.getElementById("testing").innerHTML = "<div class=\"spinner-border\"></div>"
+            }
+        </script>
+        
+    </div>
+</form>
+    
+</section>
+
+{% endblock %}

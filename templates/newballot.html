@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}New Ballot{% endblock %}
+{% block content %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, msg in messages %}
+            <div class="alert alert-{{ category }} text-center alert-dismissible" roll="alert">
+                {{msg}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+<div class="container justify-content-center text-center mt-2">
+<h4>Create a Ballot here</h4>
+        
+<section class="text-center pb-4 my-3 id=userInfo">
+    <form action="#" method="post" enctype="multipart/form-data">
+    <div class="container-fluid col-3 form-outline">
+
+        <p><strong>Election</strong></p>
+        <div>
+            <select id="election" name="election" class="form-select" required="true">
+                {% for election in results[0] %}
+                    <OPTION value={{election.election_title}}>{{election.election_title}}</OPTION>
+                {% endfor %}
+            </select>  
+        </div>
+
+        <div class="mb-2 mt-2">
+            <button id="addRace1" type="button" class="btn btn-primary">Add Race</button>
+        </div>
+
+        <div id="race">
+            <section id="raceSect">
+                <p><strong>Race</strong></p>
+                <select id="race1" name="race1" class="form-select" required="true">
+                    {% for race in results[1] %}
+                        <OPTION value={{race.race_title}}>{{race.race_title}}</OPTION>
+                    {% endfor %}
+                </select>  
+            </section>
+        </div>
+
+        <p><strong>Precinct ID</strong></p>
+        <div>
+            <select id="precinct" name="precinct" class="form-select" required="true">
+                {% for precinct in results[2] %}
+                    <OPTION value={{precinct.idprecincts}}>{{precinct.idprecincts}}</OPTION>
+                {% endfor %}
+            </select>  
+        </div>
+
+        <div class="mt-4">
+            <button type="submit" id="subbtn" class="btn btn-primary mb-2">Create Ballot</button>
+        </div>
+        <!--imbedded js to show spinner on a button click-->
+        <div id="testing"></div>
+        <script type="text/javascript">
+            var item = document.getElementById("subbtn");
+            item.onclick=function(){
+                document.getElementById("testing").innerHTML = "<div class=\"spinner-border\"></div>"
+            }
+        </script>
+        <!-- This javascript creates the new fields on button press -->
+        <script type="text/javascript">
+            var count2 = 1;
+            document.getElementById("addRace1").onclick = function() {
+
+                var container = document.getElementById("race");
+                var section = document.getElementById("raceSect");
+
+                var clone = section.cloneNode(true);
+
+                var oldRace = "race" + String(count2);
+                count2++;
+                var newRace = "race" + String(count2);
+
+                oRace = document.getElementById(oldRace);
+                oRace.id = newRace;
+                oRace.name = newRace;
+
+                container.appendChild(clone);
+            }
+        </script>
+    </div>
+</form>
+</section>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}NEW Setup election{% endblock %}
+{% block content %}
+
+<section class="text-center pb-4 my-3 id=userInfo">
+    <form action="#" method="post" enctype="multipart/form-data">
+    <div id="precinct">
+
+        <label class="mb-2"><strong>Election title</strong></label>
+        <div class="row justify-content-center mb-2">
+            <div class="col-3 form-outline">
+                <input type="text" class="form-control" min="18" name="electiontitle" placeholder="Election title" required="true">
+            </div>
+        </div>
+
+        <label class="mb-2"><strong>Election date</strong></label>
+        <div class="row justify-content-center mb-2">
+            <div class="col-3 form-outline">
+                <input type="text" class="form-control" min="18" name="electiondate" placeholder="YYYY-MM-DD" required="true">
+            </div>
+        </div>
+
+        <div>
+            <button id="addZip2" class="btn btn-dark btn-sm">Add Precinctid</button>
+        </div>
+
+
+        <p><strong>Precinct ID</strong></p>
+        <div id="zips1">
+            <section id="zipSect1">
+                <div class="row justify-content-center mb-4">
+                    <div class="col-3">
+                        <div class="form-outline">
+                            <select id="zipFour1" name="zipFour1" class="form-select" required="true">
+                                {% for precinct in results[0] %}
+                                    <OPTION value={{precinct.idprecincts}}>{{precinct.idprecincts}}</OPTION>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <input type="hidden" name="choose" value="precinct">
+        <div>
+            <button type="submit" value="precinct" name="test" id="subbtn" class="btn btn-primary mb-2">Create Election</button>
+        </div>
+
+        <div class="card bg-light text-dark mb-2">
+            <div class="card-body">
+                <p class="lead">To move on to creating races, <a href="/setuprace">Click here</a></p>
+        </div>
+
+        <!-- This javascript creates the new fields on button press -->
+        <script type="text/javascript">
+            //Have a count so we can add 1 to each of the names to make them different for the form
+            var count2 = 1;
+            document.getElementById("addZip2").onclick = function() {
+                //Grab all of the required elements for cloning
+                var container = document.getElementById("zips1");
+                var section = document.getElementById("zipSect1");
+                var button = document.getElementById("addZip2")
+                var clone = section.cloneNode(true);
+
+                //Find the name of the old variables
+                var oldFour = "zipFour" + String(count2);
+                //Increment count and find the name of new variables
+                count2++;
+                var newFour = "zipFour" + String(count2);
+
+                //Edit the names and ids of these elements so they are different
+                oZipFour = document.getElementById(oldFour);
+                oZipFour.id = newFour;
+                oZipFour.name = newFour;
+
+                //Finally, add the clone into view. NOTE: since we are editing the elements (oZipFive, oZipFour),
+                //before appending, the original view will have the highest number. If you have 3 children, the original
+                //view has zip_five4, then the prev clone zip_five3, etc. It goes backwards in reference. This does not matter
+                //functionally.
+                container.appendChild(clone);
+          }
+        </script>        
+    </div>
+</form>
+</section>
+
+{% endblock %}

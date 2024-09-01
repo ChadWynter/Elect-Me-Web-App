@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Admin{% endblock %}
+{% block content %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, msg in messages %}
+            <div class="alert alert-{{ category }} text-center alert-dismissible" roll="alert">
+                {{msg}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+<div class="container justify-content-center text-center mt-2">
+    <div class="row justify-content-end">
+        <div class="col-3 align-self-end">
+            <a href="/address-change.html" class="btn btn-light">Edit Profile</a>
+        </div>
+    </div>
+    <h3 class="mb-2">Welcome, {{user}}</h3>
+    <div class="card bg-light text-dark mb-2 mt-2 pt-2">
+        <div class="card-body">
+            <h5 class="card-title">Set Activation Time for Ballot</h5>
+            <hr>
+            <form method="post">
+            {% if content|length > 0 %}
+                {% if content[0]["active"] == "false" %}
+                    <p>please input the date and time ballot {{content[0]["idballots"]}} should be opened</p>
+                    <input type="datetime-local" name="date-time" class="form-control mb-3">
+                    <input name="activate" value="activate" type="hidden">
+                    <input name="ballot" type="hidden" value="{{content[0]['idballots']}}">
+                    <button type="submit" class="btn btn-primary">Activate</button> 
+                    {% endif %}
+                {% if content[0]["active"] == "true" %}
+                    <p>Activation time has been set for {{content[0]['active_time']}}, if you wish to deactivate the ballot, please do so below.</p>
+                {% endif %}
+            {% endif %}
+            {% if content|length == 0 %}
+                <p>you have not been assigned any polling stations/precincts</p>
+            {% endif %}
+            
+            </form>
+        </div>
+    </div>
+    <div class="card bg-light text-dark mb-2 mt-2 pt-2">
+        <div class="card-body">
+            <h5 class="card-title">Set Deactivation Time for Ballot</h5>
+            <hr>
+            <form method="post">
+                {% if content|length > 0 %}
+                    {% if content[0]["active"] == "true" %}
+                        {% if content[0]["deactivate_time"] != None  %}
+                        <p>This Ballot has a current deactivation time of {{content[0]["deactivate_time"]}}</p>
+                        {% endif %}
+                        <p>please input the date and time ballot {{content[0]["idballots"]}} should be closed.</p>
+                        <input type="datetime-local" name="date-time" class="form-control mb-3">
+                        <input name="activate" value="deactivate" type="hidden">
+                        <input name="ballot" type="hidden" value="{{content[0]['idballots']}}">
+                        <button type="submit" class="btn btn-primary">Deactivate</button>
+                        {% endif %}
+                    {% if content[0]["active"] == "false" %}
+                        <p>ballot is not yet active, if you wish to activate the ballot, please do so above.</p>
+                    {% endif %}
+                {% endif %}
+                {% if content|length == 0 %}
+                    <p>you have not been assigned any polling stations/precincts</p>
+                {% endif %}
+               
+                </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

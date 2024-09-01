@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Login Page{% endblock %}
+{% block content %}
+<div class="container-fluid text-center">
+    <form action="#" method="post" enctype="multipart/form-data">
+        <div class="mb-5 text-center">
+            <p class="lead"><strong>Edit and view information</p>
+            <hr>
+        </div>
+        <p class="mb-3 text-center"><strong>Has anything changed?</strong></p>
+        <div class="row justify-content-center mb-4">         
+            <div class="row justify-content-center mb-2">
+                <div class="col-5 form-outline">
+                    <input type="text" class="form-control" min="18" name="fname" value= {{content[0]['first_name']}} required="true">
+                </div>
+            </div>
+            
+            <div class="row justify-content-center mb-2">
+                <div class="col-5 form-outline">
+                    <input type="text" class="form-control" min="18" name="lname" value={{content[0]['last_name']}} required="true">
+                </div>
+            </div>
+                        
+            
+            <div class="row justify-content-center mb-2">
+                <div class="col-5 form-outline">
+                    <input type="text" class="form-control" min="18" name="email" value={{content[0]['email']}} required="true">
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-5 form-outline">
+                    <input type="number" class="form-control" min="18" name="number" value={{content[0]['number']}} required="true">
+                </div>
+            </div>
+                        
+        </div>
+        <p class="text-center"><strong>Is this the correct address?</strong></p>
+        <div class="row justify-content-center mb-4">
+            <div class="col-sm-3">
+                <div class="form-outline">
+                    <input type="text" class="form-control" name="addy" value={{content[0]['address']}} placeholder="phone number" required="true">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-outline">
+                    <input type="number" class="form-control"  min="0" name="zip" value={{content[0]['zip']}} required="true">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Confirm</button>
+    </form>
+</div>
+{% endblock %}
